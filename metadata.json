@@ -1,0 +1,7 @@
+{
+  "name": " VibeStyle Closing Engine Lead works",
+  "description": "lead capture is working fine",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
