@@ -1,6 +1,6 @@
 {
-  "name": " VibeStyle Closing Engine Lead works",
-  "description": "lead capture is working fine",
+  "name": "Netilify VibeStyle Closing Engine ",
+  "description": "netlify deploy prep",
   "requestFramePermissions": [
     "camera"
   ]

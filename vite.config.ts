@@ -4,14 +4,15 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   define: {
-    // Satisfies the requirement to access API key via process.env.API_KEY
-    'process.env.API_KEY': JSON.stringify(process.env.API_KEY)
-  },
-  server: {
-    port: 3000
+    // Ensuring the API_KEY is stringified safely, even if it's undefined
+    'process.env.API_KEY': JSON.stringify(process.env.API_KEY || '')
   },
   build: {
     outDir: 'dist',
-    sourcemap: true
+    sourcemap: false,
+    minify: 'terser',
+  },
+  server: {
+    port: 3000,
   }
 });

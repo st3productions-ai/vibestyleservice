@@ -1,20 +1,20 @@
+
 import { LeadData } from '../types';
 
-// Replace with your current deployment URL
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyUnzwLgKn7d5vyPc4x553SZFVCawDSwJhQ15NQoWyUbIXrF2uxaEn4R_vGpgimOS278A/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxXWB68KG3ik7eD-xBXX7uS40gPK80PuKJevid4q6tJ9I-qQoi8IotRmPDx_lz7w02wMQ/exec';
 
 export const submitLead = async (data: LeadData): Promise<boolean> => {
   try {
-    console.log('Initiating Nuclear Sync Sequence v10.0...');
+    console.log('VibeStyle Sync: Initiating Payload Encryption...');
     
-    // We send as a standard URL-encoded string for maximum compatibility with Google's parsers
-    const payload = new URLSearchParams();
-    payload.append('Name', data.Name.trim());
-    payload.append('Phone', data.Phone.trim());
-    payload.append('Email', data.Email.trim());
-    payload.append('BusinessName', data.BusinessName.trim());
-    payload.append('EmployeeSize', data.EmployeeSize);
+    const params = new URLSearchParams();
+    params.append('FullName', data.FullName);
+    params.append('ContactPhone', data.ContactPhone);
+    params.append('BusinessEmail', data.BusinessEmail);
+    params.append('BusinessName', data.BusinessName);
+    params.append('EmployeeSize', data.EmployeeSize);
 
+    // Use 'no-cors' for Google Apps Script to avoid pre-flight issues in B2B environments
     await fetch(SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
@@ -22,13 +22,12 @@ export const submitLead = async (data: LeadData): Promise<boolean> => {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: payload.toString(),
+      body: params.toString(),
     });
 
-    // In no-cors, we assume success if the fetch doesn't throw.
     return true;
   } catch (error) {
-    console.error('B2B Sync Engine Critical Failure:', error);
+    console.error('VibeStyle Sync: Protocol violation', error);
     return false;
   }
 };

@@ -19,16 +19,17 @@ export interface GenerationResult {
 }
 
 export interface LeadData {
-  Name: string;
-  Phone: string;
-  Email: string;
+  FullName: string;
+  ContactPhone: string;
+  BusinessEmail: string;
   BusinessName: string;
-  EmployeeSize: string;
+  EmployeeSize: '1-3' | '4-10' | '11-25' | '25+';
 }
 
+// Fixed missing Technique enum for constants.tsx
 export enum Technique {
-  BALAYAGE = 'Signature Balayage',
-  BLEACH_TONE = 'Full Bleach & Tone',
-  MONEY_PIECE = 'Money Piece Accent',
-  FANTASY = 'Global Fantasy Color'
+  BALAYAGE = 'BALAYAGE',
+  BLEACH_TONE = 'BLEACH_TONE',
+  MONEY_PIECE = 'MONEY_PIECE',
+  FANTASY = 'FANTASY',
 }
